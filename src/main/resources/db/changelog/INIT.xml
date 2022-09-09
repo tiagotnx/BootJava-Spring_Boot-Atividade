@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+>
+    <changeSet id="1" author="tiago">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe tabela USUARIO">
+            <not>
+                <tableExists tableName="USUARIO"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="USUARIO">
+            <column name="ID" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_USUARIO"/>
+            </column>
+            <column name="NOME" type="${descricao}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TELEFONE" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CIDADE" type="${descricao}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRICAO" type="${descricao}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="${descricao}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement tableName="usuario" columnName="id" columnDataType="int" incrementBy="1" startWith="1"/>
+
+    </changeSet>
+
+    <changeSet id="2" author="tiago">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe tabela ANIMAL">
+            <not>
+                <tableExists tableName="ANIMAL"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="ANIMAL">
+            <column name="ID" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ANIMAL"/>
+            </column>
+            <column name="NOME" type="${descricao}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TIPO" type="${descricao}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CIDADE" type="${descricao}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRICAO" type="${descricao}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IDADE" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement tableName="animal" columnName="id" columnDataType="int" incrementBy="1" startWith="1"/>
+
+    </changeSet>
+
+    <changeSet id="3" author="tiago">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe tabela ADOCAO">
+            <not>
+                <tableExists tableName="ADOCAO"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="ADOCAO">
+            <column name="ID" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ADOCAO"/>
+            </column>
+            <column name="ID_USUARIO" type="int">
+                <constraints nullable="false" foreignKeyName="FK_ID_USUARIO"/>
+            </column>
+            <column name="ID_ANIMAL" type="int">
+                <constraints nullable="false" foreignKeyName="FK_ID_ANIMAL"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement tableName="adocao" columnName="id" columnDataType="int" incrementBy="1" startWith="1"/>
+
+    </changeSet>
+
+</databaseChangeLog>
