@@ -79,11 +79,25 @@
             <column name="ID" type="int">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ADOCAO"/>
             </column>
+
+            <column name="DATA" type="${data}">
+                <constraints nullable="false"
+                />
+            </column>
+            
             <column name="ID_USUARIO" type="int">
-                <constraints nullable="false" foreignKeyName="FK_ID_USUARIO"/>
+                <constraints nullable="false"
+                             foreignKeyName="FK_ADOCAO_USUARIO"
+                             referencedTableCatalogName="USUARIO"
+                             referencedColumnNames="id"
+                />
             </column>
             <column name="ID_ANIMAL" type="int">
-                <constraints nullable="false" foreignKeyName="FK_ID_ANIMAL"/>
+                <constraints nullable="false"
+                             foreignKeyName="FK_ADOCAO_ANIMAL"
+                             referencedTableCatalogName="ANIMAL"
+                             referencedColumnNames="id"
+                />
             </column>
         </createTable>
 
